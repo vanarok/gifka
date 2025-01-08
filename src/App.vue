@@ -86,7 +86,11 @@ watch(y, () => {
   if (y.value > maxScrollY - offset && !isFetching.value) {
     console.log("fetch");
 
-    fetchNextPage();
+    if (searchInput.value) {
+      searchNextPage();
+    } else {
+      fetchNextPage();
+    }
   }
 });
 
@@ -95,7 +99,7 @@ async function searchGifs({ pageParam = 0 }) {
   const { data } = await axios.post(`https://gifs.ru/api/v1/Gif/GetGifs`, {
     tags: searchInput.value.split(" "),
     skip,
-    take: 10,
+    take: 26,
   });
   return {
     data: (await mapGifsHeightWidth(data)).filter((gif) => gif.fileType === 1),
@@ -105,15 +109,17 @@ async function searchGifs({ pageParam = 0 }) {
 
 const searchInput = ref("");
 
-const { data: searchResults } = useInfiniteQuery({
-  initialPageParam: 0,
-  getNextPageParam: (lastPage) => lastPage?.nextPage,
-  enabled: () => !!searchInput.value,
-  queryKey: ["search", searchInput],
-  queryFn: searchGifs,
-  select: (data) => [...data.pages.flatMap((page) => page.data)],
-  refetchOnWindowFocus: false,
-});
+const { data: searchResults, fetchNextPage: searchNextPage } = useInfiniteQuery(
+  {
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => lastPage?.nextPage,
+    enabled: () => !!searchInput.value,
+    queryKey: ["search", searchInput],
+    queryFn: searchGifs,
+    select: (data) => [...data.pages.flatMap((page) => page.data)],
+    refetchOnWindowFocus: false,
+  },
+);
 </script>
 
 <template>
