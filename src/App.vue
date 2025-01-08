@@ -120,6 +120,53 @@ const { data: searchResults, fetchNextPage: searchNextPage } = useInfiniteQuery(
     refetchOnWindowFocus: false,
   },
 );
+
+const searchInputPlaceholderIndex = ref(0);
+const searchInputPlaceholders = [
+  "Search all the gifs",
+  "pizza",
+  "cat memes",
+  "funny",
+  "love",
+  "reaction",
+  "cute",
+  "happy",
+  "sad",
+  "excited",
+  "dance",
+  "celebration",
+  "anime",
+  "memes",
+  "cat",
+  "dog",
+  "fail",
+  "crying",
+  "thank you",
+  "wow",
+  "good morning",
+  "good night",
+  "motivation",
+  "facepalm",
+  "sorry",
+  "laughing",
+  "angry",
+  "surprised",
+  "congratulations",
+  "mood",
+  "cheer up",
+  "victory",
+  "friendship",
+  "love you",
+];
+const searchInputPlaceholder = ref(searchInputPlaceholders[0]);
+setInterval(() => {
+  searchInputPlaceholder.value =
+    searchInputPlaceholders[searchInputPlaceholderIndex.value];
+  searchInputPlaceholderIndex.value = searchInputPlaceholderIndex.value + 1;
+  if (searchInputPlaceholderIndex.value === searchInputPlaceholders.length) {
+    searchInputPlaceholderIndex.value = 0;
+  }
+}, 2000);
 </script>
 
 <template>
@@ -156,7 +203,7 @@ const { data: searchResults, fetchNextPage: searchNextPage } = useInfiniteQuery(
                 min-width="840"
                 width="840"
                 v-model="searchInput"
-                placeholder="Search all the gifs"
+                :placeholder="searchInputPlaceholder"
                 clearable
                 hide-details
                 variant="solo"
