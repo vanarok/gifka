@@ -1,3 +1,3 @@
 # Gifka - Gif Search
 
-Gif Search for [gifs.ru](https://gifs.ru)
+Gifka is a simple application that allows you to search for gifs.
