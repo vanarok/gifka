@@ -162,7 +162,7 @@ const { data: searchResults } = useInfiniteQuery({
     </v-app-bar>
 
     <v-main>
-      <v-container min-height="105vh" max-width="1040" width="1040">
+      <v-container max-width="1040" width="1040">
         <div
           class="grid"
           v-masonry="{
