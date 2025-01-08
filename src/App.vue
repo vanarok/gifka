@@ -162,7 +162,7 @@ const { data: searchResults } = useInfiniteQuery({
     </v-app-bar>
 
     <v-main>
-      <v-container min-height="105vh"  max-width="1040" width="1040">
+      <v-container min-height="105vh" max-width="1040" width="1040">
         <div
           class="grid"
           v-masonry="{
@@ -179,6 +179,7 @@ const { data: searchResults } = useInfiniteQuery({
               :key="index"
             >
               <img
+                :alt="gif.tags"
                 :src="gif.cloudSource300"
                 :width="gif.width"
                 :height="gif.height"
@@ -188,6 +189,7 @@ const { data: searchResults } = useInfiniteQuery({
           <div v-else>
             <div class="grid-item" v-for="(gif, index) in data" :key="index">
               <img
+                :alt="gif.tags"
                 :src="gif.cloudSource300"
                 :width="gif.width"
                 :height="gif.height"
