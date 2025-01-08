@@ -9,18 +9,18 @@ import { ref, watch } from "vue";
 import { useScroll } from "@vueuse/core";
 
 const vMasonry = {
-  mounted: (el, binding) => {
+  mounted: (el: any, binding: any) => {
     console.log("Initializing Masonry");
     el.masonryInstance = new Masonry(el, binding.value || {});
   },
-  updated: (el) => {
+  updated: (el: any) => {
     // Обновление расположения при загрузке изображений
     imagesLoaded(el, () => {
       el.masonryInstance.reloadItems();
       el.masonryInstance.layout();
     });
   },
-  unmounted: (el) => {
+  unmounted: (el: any) => {
     // Уничтожение Masonry при удалении элемента
     el.masonryInstance.destroy();
   },
