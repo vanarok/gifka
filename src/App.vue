@@ -123,6 +123,7 @@ const { data: searchResults } = useInfiniteQuery({
       flat
       scroll-behavior="hide"
       extension-height="80"
+      scroll-threshold="100"
     >
       <template #extension>
         <v-container max-width="1040" width="1040">
