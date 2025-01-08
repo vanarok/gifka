@@ -197,17 +197,17 @@ const { data: searchResults } = useInfiniteQuery({
             </div>
           </div>
         </div>
+        <v-row justify="center">
+          <v-col cols="auto">
+            <div class="loading-indicator">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </v-col>
+        </v-row>
       </v-container>
-      <v-row justify="center">
-        <v-col cols="auto">
-          <div class="loading-indicator">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>
-        </v-col>
-      </v-row>
     </v-main>
   </v-app>
 </template>
